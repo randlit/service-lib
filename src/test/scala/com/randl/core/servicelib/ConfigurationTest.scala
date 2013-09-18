@@ -19,7 +19,7 @@ class ConfigurationScope extends Configuration
 class ConfigurationTest extends SpecificationWithJUnit with Configuration {
 
   sequential
-  "Configuration should do" should {
+  "Configuration should   do" should {
     "should iniziate an entry" in {
       val x = system.getConfig("elasticsearch").getString("hosts")
       x must_== "127.0.0.1:9300"
