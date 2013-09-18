@@ -4,7 +4,6 @@ import org.junit.runner.RunWith
 import org.specs2.runner.JUnitRunner
 import org.specs2.mutable.SpecificationWithJUnit
 import com.randl.core.servicelib.configuration.Configuration
-import org.specs2.execute.Result
 
 /**
  * Created with IntelliJ IDEA.

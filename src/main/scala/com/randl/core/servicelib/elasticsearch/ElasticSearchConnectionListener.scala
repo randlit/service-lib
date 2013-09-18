@@ -24,7 +24,7 @@ import com.randl.core.servicelib.configuration.Configuration
 object ElasticSearchFactory extends Configuration {
   var client: Client = _
   private var node: Node = _
-  lazy val settingDev = ImmutableSettings.settingsBuilder();
+  lazy val settingDev = ImmutableSettings.settingsBuilder()
   lazy val host: String = system.getConfig("elasticsearch").getString("hosts")
   lazy val clusterName: String = system.getConfig("elasticsearch").getString("clusterName")
   settingDev.put("node.name", "Lasher")
@@ -45,5 +45,15 @@ object ElasticSearchFactory extends Configuration {
 
 trait ESClient {
   def client: Client = ElasticSearchFactory.client
+}
+
+class ElasticSearchConnectionListener extends ServletContextListener {
+  def contextInitialized(p1: ServletContextEvent) {
+    ElasticSearchFactory.init()
+  }
+
+  def contextDestroyed(p1: ServletContextEvent) {
+    ElasticSearchFactory.close()
+  }
 }
 
