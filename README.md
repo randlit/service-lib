@@ -2,8 +2,9 @@
 - Connection with Elasticsearch
 - Acces to the application.conf
 <h2>Example</h2>
- ´´´scala
+
+```scala 
     class example extends Configuration {
         val text = conf.getString("text")
     }
- ´´´
+```
