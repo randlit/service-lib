@@ -5,6 +5,7 @@ import org.elasticsearch.client.Client
 import org.elasticsearch.node.{NodeBuilder, Node}
 import org.elasticsearch.common.settings.ImmutableSettings
 import com.randl.core.servicelib.configuration.Configuration
+import org.elasticsearch.index.query.{QueryBuilder, QueryBuilders}
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,7 +45,17 @@ object ElasticSearchFactory extends Configuration {
 }
 
 trait ESClient {
+
+  val indexES: String
+
+  val typeES: String
+
   def client: Client = ElasticSearchFactory.client
+
+  def prepareSearch = client.prepareSearch(indexES)
+
+  def prepareSearch(cb: QueryBuilder) = client.prepareSearch().setIndices(indexES).setQuery(cb)
+
 }
 
 class ElasticSearchConnectionListener extends ServletContextListener {
