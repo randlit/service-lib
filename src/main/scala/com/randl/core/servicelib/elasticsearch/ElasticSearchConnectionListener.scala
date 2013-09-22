@@ -24,22 +24,29 @@ import org.elasticsearch.index.query.{QueryBuilder, QueryBuilders}
  */
 object ElasticSearchFactory extends Configuration {
   var client: Client = _
-  private var node: Node = _
+  private var node: Option[Node] = None
   lazy val settingDev = ImmutableSettings.settingsBuilder()
   lazy val host: String = system.getConfig("elasticsearch").getString("hosts")
   lazy val clusterName: String = system.getConfig("elasticsearch").getString("clusterName")
-  settingDev.put("node.name", "Lasher")
   settingDev.put("discovery.zen.ping.multicast.enabled", false)
   settingDev.put("discovery.zen.ping.unicast.hosts", host)
 
   def init() {
-    node = NodeBuilder.nodeBuilder().client(true).clusterName(clusterName).settings(settingDev).node()
-    client = node.client()
+    if (node.isEmpty) {
+      node = Some(NodeBuilder.nodeBuilder()
+        .client(true)
+        .clusterName(clusterName)
+        .settings(settingDev)
+        .node())
+    }
+
+    client = node.get.client()
   }
 
   def close() {
     client.close()
-    node.close()
+    node.get.close()
+    node = None
   }
 
 }
