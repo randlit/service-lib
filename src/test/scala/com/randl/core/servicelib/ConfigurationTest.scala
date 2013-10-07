@@ -21,7 +21,7 @@ class ConfigurationTest extends SpecificationWithJUnit with Configuration {
   "Configuration should   do" should {
     "should iniziate an entry" in {
       val x = system.getConfig("elasticsearch").getString("hosts")
-      x must_== "127.0.0.1:9300"
+      x must_== "localhost:9300"
     }
   }
 
