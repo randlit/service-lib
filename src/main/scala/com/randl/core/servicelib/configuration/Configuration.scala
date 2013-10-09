@@ -17,13 +17,9 @@ object Configuration {
 
 trait Configuration {
   // namespace of the apcConfig => override in your class if needed => defaults to package name of the class
-  val apcConfigNamespace: String = this.getClass.getPackage.getName
-
   /**
    * load apc config
    */
-  protected lazy val apcConfig = config.getConfig(apcConfigNamespace)
-
   def config = Configuration.config
 
   def system = config.getConfig("system")
