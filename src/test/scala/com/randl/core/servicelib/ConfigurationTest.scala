@@ -12,7 +12,6 @@ import com.randl.core.servicelib.configuration.Configuration
  * Time: 11:49 PM
  * To change this template use File | Settings | File Templates.
  */
-class ConfigurationScope extends Configuration
 
 @RunWith(classOf[JUnitRunner])
 class ConfigurationTest extends SpecificationWithJUnit with Configuration {
@@ -22,6 +21,10 @@ class ConfigurationTest extends SpecificationWithJUnit with Configuration {
     "should iniziate an entry" in {
       val x = system.getConfig("elasticsearch").getString("hosts")
       x must_== "localhost:9300"
+    }
+    "rest end point shuold be " in {
+      val x = restEndPoint
+      x must_== "http://oak-165896.eu-west-1.bonsai.io/articles/"
     }
   }
 

@@ -24,4 +24,6 @@ trait Configuration {
 
   def system = config.getConfig("system")
 
+  def restEndPoint = system.getConfig("elasticsearch").getString("rest")
+
 }

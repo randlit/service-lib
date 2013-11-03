@@ -56,6 +56,11 @@
             <artifactId>jerkson_${scala.version}</artifactId>
             <version>0.5.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.searchbox</groupId>
+            <artifactId>jest</artifactId>
+            <version>0.0.5</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -66,6 +71,12 @@
         <repository>
             <id>typesafe</id>
             <url>http://repo.typesafe.com/typesafe/maven-releases</url>
+        </repository>
+
+        <repository>
+            <id>sonatype</id>
+            <name>Sonatype Groups</name>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
 
     </repositories>
